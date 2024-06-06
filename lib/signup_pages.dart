@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:wedevs/auth_controller.dart';
 import 'package:wedevs/color_const.dart';
 import 'package:wedevs/const_methods.dart';
+import 'package:wedevs/custom_submit_button.dart';
 import 'package:wedevs/custom_text.dart';
 import 'package:wedevs/custom_textfromfield.dart';
 import 'package:wedevs/image_path.dart';
@@ -148,7 +149,50 @@ class SignupScreen extends StatelessWidget {
                               fontSize: 13,
                             )),
                       ),
-                    )
+                    ),
+                    const SizedBox(
+                      height: 20,
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.all(16.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width,
+                        height: 50,
+                        child: CustomSubmitButton(
+                          backgroundColor: HexColor(ColorConst.buttonColor),
+                          borderRadius: 10,
+                          elevation: 2,
+                          text: TextConst.login,
+                          textColor: ColorConst.whiteColor,
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                        onTap: (){},
+                        child: CustomSubmitButton(
+                          backgroundColor: HexColor(ColorConst.buttonColor),
+                          borderRadius: 10,
+                          elevation: 2,
+                          text: TextConst.login,
+                          textColor: ColorConst.whiteColor,
+                          onPressed: () {},
+                        ),
+                      ),
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                          onTap: () {},
+                          child: CustomText(
+                            color: HexColor(ColorConst.hintTextColor),
+                            text: TextConst.createNewAccount,
+                            fontWeight: FontWeight.w300,
+                            fontSize: 17.36,
+                          )),
+                    ),
                   ],
                 ),
               ),
