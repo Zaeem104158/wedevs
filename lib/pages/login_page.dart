@@ -1,23 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:wedevs/auth_controller.dart';
-import 'package:wedevs/color_const.dart';
-import 'package:wedevs/const_methods.dart';
-import 'package:wedevs/custom_submit_button.dart';
-import 'package:wedevs/custom_text.dart';
-import 'package:wedevs/custom_textfromfield.dart';
-import 'package:wedevs/image_path.dart';
-import 'package:wedevs/svg_image_component.dart';
-import 'package:wedevs/text_const.dart';
+import 'package:wedevs/route_setting/app_routes.dart';
+import 'package:wedevs/controller/auth_controller.dart';
+import 'package:wedevs/const/color_const.dart';
+import 'package:wedevs/const/const_methods.dart';
+import 'package:wedevs/component/custom_button_component.dart';
+import 'package:wedevs/component/custom_text_component.dart';
+import 'package:wedevs/component/custom_textfromfield_component.dart';
+import 'package:wedevs/const/image_path.dart';
+import 'package:wedevs/component/svg_image_component.dart';
+import 'package:wedevs/const/text_const.dart';
 
-class SignupScreen extends StatelessWidget {
-  const SignupScreen({super.key});
+class LoginPage extends StatelessWidget {
+  const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     final authController = Get.find<AuthController>();
     return Scaffold(
-      backgroundColor: const Color(0xFFF8F8F8),
+     
       body: Obx(() {
         return Padding(
           padding: const EdgeInsets.all(32.0),
@@ -28,8 +29,8 @@ class SignupScreen extends StatelessWidget {
                 height: MediaQuery.of(context).padding.top + 100,
               ),
               const SvgImage(assetName: ImagePath.appLogo),
-              const SizedBox(
-                height: 100,
+              SizedBox(
+                height: MediaQuery.of(context).size.height / 16,
               ),
               const CustomText(
                 text: TextConst.signIn,
@@ -56,7 +57,7 @@ class SignupScreen extends StatelessWidget {
                         ],
                       ),
                       filled: true,
-                      filledColor: ColorConst.whiteColor,
+                      filledColor: HexColor(ColorConst.whiteColor),
                       hintText: TextConst.email,
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
@@ -67,14 +68,14 @@ class SignupScreen extends StatelessWidget {
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
-                      focusedOutLineInputBorderColor: ColorConst.whiteColor,
+                      focusedOutLineInputBorderColor: HexColor(ColorConst.whiteColor),
                       enableOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
-                      enableOutLineInputBorderColor: ColorConst.whiteColor,
+                      enableOutLineInputBorderColor: HexColor(ColorConst.whiteColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(
@@ -95,7 +96,7 @@ class SignupScreen extends StatelessWidget {
                         ],
                       ),
                       filled: true,
-                      filledColor: ColorConst.whiteColor,
+                      filledColor: HexColor(ColorConst.whiteColor),
                       hintText: TextConst.password,
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
@@ -106,14 +107,14 @@ class SignupScreen extends StatelessWidget {
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
-                      focusedOutLineInputBorderColor: ColorConst.whiteColor,
+                      focusedOutLineInputBorderColor: HexColor(ColorConst.whiteColor),
                       enableOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
                         bottomLeft: Radius.circular(10),
                         bottomRight: Radius.circular(10),
                       ),
-                      enableOutLineInputBorderColor: ColorConst.whiteColor,
+                      enableOutLineInputBorderColor: HexColor(ColorConst.whiteColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(
@@ -162,32 +163,67 @@ class SignupScreen extends StatelessWidget {
                           backgroundColor: HexColor(ColorConst.buttonColor),
                           borderRadius: 10,
                           elevation: 2,
-                          text: TextConst.login,
-                          textColor: ColorConst.whiteColor,
+                          widget: const Text(TextConst.login),
+                          textColor: HexColor(ColorConst.whiteColor),
                           onPressed: () {},
                         ),
                       ),
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
-                        onTap: (){},
-                        child: CustomSubmitButton(
-                          backgroundColor: HexColor(ColorConst.buttonColor),
-                          borderRadius: 10,
-                          elevation: 2,
-                          text: TextConst.login,
-                          textColor: ColorConst.whiteColor,
-                          onPressed: () {},
-                        ),
-                      ),
+                    const SizedBox(
+                      height: 20,
                     ),
-                    Align(
-                      alignment: Alignment.center,
-                      child: GestureDetector(
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        GestureDetector(
                           onTap: () {},
+                          child: CustomSubmitButton(
+                            height: 56,
+                            width: 56,
+                            backgroundColor: HexColor(ColorConst.whiteColor),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 0.0, vertical: 0.0),
+                            borderRadius: 10,
+                            elevation: 2,
+                            widget: const SvgImage(
+                                assetName: ImagePath.facebookIcon),
+                            textColor: HexColor(ColorConst.whiteColor),
+                            onPressed: () {},
+                          ),
+                        ),
+                        const SizedBox(
+                          width: 20,
+                        ),
+                        GestureDetector(
+                          onTap: () {},
+                          child: CustomSubmitButton(
+                            height: 56,
+                            width: 56,
+                            backgroundColor: HexColor(ColorConst.whiteColor),
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 16.0),
+                            borderRadius: 10,
+                            elevation: 2,
+                            widget:
+                                const SvgImage(assetName: ImagePath.googleIcon),
+                            onPressed: () {
+                              
+                            },
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(
+                      height: 30,
+                    ),
+                    Align(
+                      alignment: Alignment.center,
+                      child: GestureDetector(
+                          onTap: () {
+                            Get.offAllNamed(AppRoutes.signup);
+                          },
                           child: CustomText(
-                            color: HexColor(ColorConst.hintTextColor),
+                            color: HexColor(ColorConst.greyColor),
                             text: TextConst.createNewAccount,
                             fontWeight: FontWeight.w300,
                             fontSize: 17.36,

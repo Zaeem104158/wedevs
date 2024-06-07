@@ -1,18 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+
 class SvgImage extends StatelessWidget {
   final String assetName;
   //final double width;
   //final double height;
-  // final Color? color;
+  final ColorFilter? colorFilter;
 
   const SvgImage({
     super.key,
     required this.assetName,
     //this.width = 24.0,
     //this.height = 24.0,
-    //this.color,
+    this.colorFilter,
   });
 
   @override
@@ -21,7 +22,7 @@ class SvgImage extends StatelessWidget {
       'assets/svg_icons/$assetName',
       //width: width,
       //height: height,
-      // colorFilter: ColorFilter.mode(color, BlendMode.srcIn),
+      colorFilter: colorFilter,
     );
   }
 }

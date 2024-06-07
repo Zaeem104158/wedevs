@@ -4,6 +4,7 @@ class CustomText extends StatelessWidget {
   final String text;
   final double fontSize;
   final Color color;
+  final TextDecoration? textDecoration;
   final FontWeight fontWeight;
   final TextAlign textAlign;
   final double? letterSpacing;
@@ -14,6 +15,7 @@ class CustomText extends StatelessWidget {
     required this.text,
     this.fontSize = 14.0,
     this.color = Colors.black,
+    this.textDecoration,
     this.fontWeight = FontWeight.normal,
     this.textAlign = TextAlign.left,
     this.letterSpacing,
@@ -29,7 +31,8 @@ class CustomText extends StatelessWidget {
         color: color,
         fontWeight: fontWeight,
         letterSpacing: letterSpacing,
-        height: lineHeight
+        height: lineHeight,
+        decoration: textDecoration,
       ),
       
       textAlign: textAlign,
