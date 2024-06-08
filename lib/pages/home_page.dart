@@ -1,7 +1,7 @@
 import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedevs/component/custom_button_component.dart';
 import 'package:wedevs/component/custom_text_component.dart';
 import 'package:wedevs/component/product_card_component.dart';
 import 'package:wedevs/component/svg_image_component.dart';
@@ -45,97 +45,234 @@ class HomePage extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     Get.bottomSheet(
+                        enableDrag: true,
+                        ignoreSafeArea: false,
                         backgroundColor: HexColor(ColorConst.backgroundColor),
                         Obx(
-                          () => Column(
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: homeController.newestSelected.value,
-                                    onChanged: (bool? value) {
-                                      homeController.newestSelected.value =
-                                          value ?? false;
-                                    },
+                          () => Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              children: [
+                                Align(
+                                  alignment: Alignment.center,
+                                  child: Container(
+                                    width: 47,
+                                    height: 3,
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                        color:
+                                            HexColor(ColorConst.checkBoxColor)),
                                   ),
-                                  const SizedBox(width: 8),
-                                  const Text('Newest'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: homeController.oldestSelected.value,
-                                    onChanged: (bool? value) {
-                                      homeController.oldestSelected.value =
-                                          value ?? false;
-                                    },
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.all(8.0),
+                                  child: Align(
+                                    alignment: Alignment.topLeft,
+                                    child: CustomText(
+                                        color: HexColor(ColorConst.blackColor),
+                                        fontSize: 17.36,
+                                        fontWeight: FontWeight.w700,
+                                        text: TextConst.filter),
                                   ),
-                                  const SizedBox(width: 8),
-                                  const Text('Oldest'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: homeController
-                                        .bestSellingSelected.value,
-                                    onChanged: (bool? value) {
-                                      homeController.bestSellingSelected.value =
-                                          value ?? false;
-                                    },
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text('Best Selling'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: homeController
-                                        .priceLowToHighSelected.value,
-                                    onChanged: (bool? value) {
-                                      homeController.priceLowToHighSelected
-                                          .value = value ?? false;
-                                    },
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text('Price Low to High'),
-                                ],
-                              ),
-                              Row(
-                                children: [
-                                  Checkbox(
-                                    value: homeController
-                                        .priceHighToLowSelected.value,
-                                    onChanged: (bool? value) {
-                                      homeController.priceHighToLowSelected
-                                          .value = value ?? false;
-                                    },
-                                  ),
-                                  const SizedBox(width: 8),
-                                  const Text('Price High to Low'),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      Navigator.of(context).pop();
-                                    },
-                                    child: Text('Cancel'),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: applyFilters,
-                                    child: Text('Apply'),
-                                  ),
-                                ],
-                              ),
-                            ],
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      activeColor:
+                                          HexColor(ColorConst.checkBoxColor),
+                                      side: BorderSide(
+                                          style: BorderStyle.solid,
+                                          color: HexColor(
+                                              ColorConst.checkBoxColor)),
+                                      value:
+                                          homeController.newestSelected.value,
+                                      onChanged: (bool? value) {
+
+                                        homeController.newestSelected.value =
+                                            value ?? false;
+                                            homeController.oldestSelected.value = false;
+                                            homeController.bestSellingSelected.value = false;
+                                            homeController.priceLowToHighSelected.value = false;
+                                            homeController.priceHighToLowSelected.value = false;
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const CustomText(
+                                      text: TextConst.newest,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      activeColor:
+                                          HexColor(ColorConst.checkBoxColor),
+                                      side: BorderSide(
+                                          style: BorderStyle.solid,
+                                          color: HexColor(
+                                              ColorConst.checkBoxColor)),
+                                      value:
+                                          homeController.oldestSelected.value,
+                                      onChanged: (bool? value) {
+                                        homeController.oldestSelected.value =
+                                            value ?? false;
+                                            homeController.newestSelected.value = false;
+                                            homeController.bestSellingSelected.value = false;
+                                            homeController.priceLowToHighSelected.value = false;
+                                            homeController.priceHighToLowSelected.value = false;
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const CustomText(
+                                      text: TextConst.oldest,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      activeColor:
+                                          HexColor(ColorConst.checkBoxColor),
+                                      side: BorderSide(
+                                          style: BorderStyle.solid,
+                                          color: HexColor(
+                                              ColorConst.checkBoxColor)),
+                                      value: homeController
+                                          .bestSellingSelected.value,
+                                      onChanged: (bool? value) {
+                                        homeController.bestSellingSelected
+                                            .value = value ?? false;
+                                               homeController.newestSelected.value = false;
+                                            homeController.oldestSelected.value = false;
+                                            homeController.priceLowToHighSelected.value = false;
+                                            homeController.priceHighToLowSelected.value = false;
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const CustomText(
+                                      text: TextConst.bestSelling,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      activeColor:
+                                          HexColor(ColorConst.checkBoxColor),
+                                      side: BorderSide(
+                                          style: BorderStyle.solid,
+                                          color: HexColor(
+                                              ColorConst.checkBoxColor)),
+                                      value: homeController
+                                          .priceLowToHighSelected.value,
+                                      onChanged: (bool? value) {
+                                        homeController.priceLowToHighSelected
+                                            .value = value ?? false;
+                                               homeController.newestSelected.value = false;
+                                            homeController.bestSellingSelected.value = false;
+                                            homeController.oldestSelected.value = false;
+                                            homeController.priceHighToLowSelected.value = false;
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const CustomText(
+                                      text: TextConst.priceLowToHigh,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
+                                Row(
+                                  children: [
+                                    Checkbox(
+                                      checkColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      activeColor:
+                                          HexColor(ColorConst.checkBoxColor),
+                                      side: BorderSide(
+                                          style: BorderStyle.solid,
+                                          color: HexColor(
+                                              ColorConst.checkBoxColor)),
+                                      value: homeController
+                                          .priceHighToLowSelected.value,
+                                      onChanged: (bool? value) {
+                                        homeController.priceHighToLowSelected
+                                            .value = value ?? false;
+                                               homeController.newestSelected.value = false;
+                                            homeController.bestSellingSelected.value = false;
+                                            homeController.priceLowToHighSelected.value = false;
+                                            homeController.oldestSelected.value = false;
+                                      },
+                                    ),
+                                    const SizedBox(width: 8),
+                                    const CustomText(
+                                      text: TextConst.priceHighToLow,
+                                      fontWeight: FontWeight.w400,
+                                      fontSize: 15,
+                                    ),
+                                  ],
+                                ),
+                                const SizedBox(height: 16),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceEvenly,
+                                  children: [
+                                    CustomButton(
+                                      height: 61,
+                                      width: 155.5,
+                                      borderRadius: 10,
+                                      backgroundColor:
+                                          HexColor(ColorConst.whiteColor),
+                                      borderColor:
+                                          HexColor(ColorConst.grey50Color),
+                                      onPressed: () {
+                                           homeController.newestSelected.value = false;
+                                            homeController.oldestSelected.value = false;
+                                            homeController.bestSellingSelected.value = false;
+                                            homeController.priceLowToHighSelected.value = false;
+                                            homeController.priceHighToLowSelected.value = false;
+                                            Get.back();
+                                      },
+                                      widget: CustomText(
+                                          color:
+                                              HexColor(ColorConst.grey200Color),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400,
+                                          text: TextConst.cancel),
+                                    ),
+                                    CustomButton(
+                                      height: 61,
+                                      width: 155.5,
+                                      backgroundColor:
+                                          HexColor(ColorConst.greenColor),
+                                      borderRadius: 10,
+                                      onPressed: homeController.applyFilters,
+                                      widget: CustomText(
+                                          color:
+                                              HexColor(ColorConst.whiteColor),
+                                          fontSize: 17,
+                                          fontWeight: FontWeight.w400,
+                                          text: TextConst.apply),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
                           ),
                         ));
                   },
@@ -222,9 +359,4 @@ class HomePage extends StatelessWidget {
       ),
     )));
   }
-}
-
-void applyFilters() {
-  // Apply filter logic here
-  Get.back(); // Close the bottom sheet
 }

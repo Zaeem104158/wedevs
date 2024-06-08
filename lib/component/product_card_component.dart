@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:wedevs/component/custom_text_component.dart';
+import 'package:wedevs/const/color_const.dart';
+import 'package:wedevs/const/const_methods.dart';
 import 'package:wedevs/model/product_model.dart' as data;
 
 class ProductCard extends StatelessWidget {
   final data.ProductModel product;
 
-  const ProductCard({super.key,required this.product});
+  const ProductCard({super.key, required this.product});
 
   @override
   Widget build(BuildContext context) {
@@ -43,15 +45,17 @@ class ProductCard extends StatelessWidget {
                   children: [
                     CustomText(
                       text: '\$${product.regularPrice}',
-                      fontWeight: FontWeight.bold,
-                      fontSize: 16,
-                      color: Colors.red,
+                      fontWeight: FontWeight.w400,
+                      fontSize: 15,
+                      textDecoration: TextDecoration.lineThrough,
+                      color: HexColor(ColorConst.grey150Color),
                     ),
-                    SizedBox(width: 8),
+                    const SizedBox(width: 8),
                     CustomText(
                       text: '\$${product.price}',
-                      textDecoration: TextDecoration.lineThrough,
-                      color: Colors.grey,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w700,
+                      color: HexColor(ColorConst.blackColor),
                     ),
                   ],
                 ),

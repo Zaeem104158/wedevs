@@ -27,4 +27,28 @@ class HomeController extends GetxController {
     final List<dynamic> data = json.decode(response);
     return data.map((json) => ProductModel.fromJson(json)).toList();
   }
+
+  void sortProducts(bool ascending) {
+    if (productData.isNotEmpty) {
+      productData.sort((a, b) => ascending
+          ? int.parse(a.price).compareTo(int.parse(b.price))
+          : int.parse(b.price).compareTo(int.parse(a.price)));
+    }
+  }
+
+  applyFilters() {
+    if (priceHighToLowSelected.value) {
+      sortProducts(false);
+      Get.back();
+    } else {
+      sortProducts(true);
+      Get.back();
+    }
+    newestSelected.value = false;
+    oldestSelected.value = false;
+    bestSellingSelected.value = false;
+    priceLowToHighSelected.value = false;
+    priceHighToLowSelected.value = false;
+    Get.back();
+  }
 }

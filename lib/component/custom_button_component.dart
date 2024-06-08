@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 
-class CustomSubmitButton extends StatelessWidget {
+class CustomButton extends StatelessWidget {
   final Widget? widget;
   final double? height;
   final double? width;
   final VoidCallback? onPressed;
   final Color? backgroundColor;
   final Color? textColor;
+  final Color? borderColor;
   final double? borderRadius;
   final EdgeInsetsGeometry? padding;
   final double? elevation;
-  const CustomSubmitButton(
+
+  const CustomButton(
       {super.key,
       this.widget,
       this.height,
       this.width,
       this.backgroundColor,
+      this.borderColor,
       this.borderRadius,
       this.elevation,
       this.onPressed,
@@ -38,6 +41,7 @@ class CustomSubmitButton extends StatelessWidget {
           elevation: WidgetStateProperty.all(elevation),
           shape: WidgetStateProperty.all(
             RoundedRectangleBorder(
+              side: BorderSide(color: borderColor ?? Colors.transparent),
               borderRadius: BorderRadius.circular(borderRadius ?? 0),
             ),
           ),
