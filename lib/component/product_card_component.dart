@@ -25,7 +25,7 @@ class ProductCard extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(12)),
               child: Image.network(
                 product.permalink,
-                fit: BoxFit.cover,
+                fit: BoxFit.fill,
                 width: double.infinity,
               ),
             ),
