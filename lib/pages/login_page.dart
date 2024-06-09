@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:wedevs/route_setting/app_routes.dart';
@@ -42,20 +44,36 @@ class LoginPage extends StatelessWidget {
                     height: 20,
                   ),
                   Form(
-                    key: authController.signupFormKey,
+                    key: authController.loginFormKey,
                     child: Column(
                       children: [
                         CustomTextFromField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter your email";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {
+                            if (value != null || value!.isNotEmpty) {
+                              authController.email.value = value;
+                            }
+
+                            return authController.email.value;
+                          },
                           decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                offset: const Offset(0, 5),
-                                blurRadius: 10,
-                                spreadRadius: 0,
-                                blurStyle: BlurStyle.normal,
-                                color: Colors.black.withOpacity(0.25),
-                              ),
-                            ],
+                            boxShadow: !authController.validate.value
+                                ? [
+                                    BoxShadow(
+                                      offset: const Offset(0, 5),
+                                      blurRadius: 10,
+                                      spreadRadius: 0,
+                                      blurStyle: BlurStyle.normal,
+                                      color: Colors.black.withOpacity(0.25),
+                                    ),
+                                  ]
+                                : [],
                           ),
                           filled: true,
                           filledColor: HexColor(ColorConst.whiteColor),
@@ -63,6 +81,13 @@ class LoginPage extends StatelessWidget {
                           hintTextColor: HexColor(ColorConst.hintTextColor),
                           hintTextFontSize: 17.36,
                           hintTextFontWeight: FontWeight.w400,
+                          inputBorderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          inputBorderColor: HexColor(ColorConst.whiteColor),
                           focusedOutLineInputBorderRadius:
                               const BorderRadius.only(
                             topLeft: Radius.circular(10),
@@ -81,6 +106,15 @@ class LoginPage extends StatelessWidget {
                           ),
                           enableOutLineInputBorderColor:
                               HexColor(ColorConst.whiteColor),
+                          errorOutLineInputBorderRadius:
+                              const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          errorOutLineInputBorderColor:
+                              HexColor(ColorConst.errorColor),
                           prefixIcon: const Padding(
                             padding: EdgeInsets.only(right: 16.0, left: 16),
                             child: SvgImage(
@@ -89,16 +123,32 @@ class LoginPage extends StatelessWidget {
                           ),
                         ),
                         CustomTextFromField(
+                          validator: (value) {
+                            if (value == null || value.isEmpty) {
+                              return "Please enter your password";
+                            } else {
+                              return null;
+                            }
+                          },
+                          onChanged: (value) {
+                            if (value != null || value!.isNotEmpty) {
+                              authController.password.value = value;
+                            }
+
+                            return authController.password.value;
+                          },
                           decoration: BoxDecoration(
-                            boxShadow: [
-                              BoxShadow(
-                                offset: const Offset(0, 5),
-                                blurRadius: 10,
-                                spreadRadius: 0,
-                                blurStyle: BlurStyle.normal,
-                                color: Colors.black.withOpacity(0.25),
-                              ),
-                            ],
+                            boxShadow: !authController.validate.value
+                                ? [
+                                    BoxShadow(
+                                      offset: const Offset(0, 5),
+                                      blurRadius: 10,
+                                      spreadRadius: 0,
+                                      blurStyle: BlurStyle.normal,
+                                      color: Colors.black.withOpacity(0.25),
+                                    ),
+                                  ]
+                                : [],
                           ),
                           filled: true,
                           filledColor: HexColor(ColorConst.whiteColor),
@@ -106,6 +156,13 @@ class LoginPage extends StatelessWidget {
                           hintTextColor: HexColor(ColorConst.hintTextColor),
                           hintTextFontSize: 17.36,
                           hintTextFontWeight: FontWeight.w400,
+                          inputBorderRadius: const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          inputBorderColor: HexColor(ColorConst.whiteColor),
                           focusedOutLineInputBorderRadius:
                               const BorderRadius.only(
                             topLeft: Radius.circular(10),
@@ -124,6 +181,15 @@ class LoginPage extends StatelessWidget {
                           ),
                           enableOutLineInputBorderColor:
                               HexColor(ColorConst.whiteColor),
+                          errorOutLineInputBorderRadius:
+                              const BorderRadius.only(
+                            topLeft: Radius.circular(10),
+                            topRight: Radius.circular(10),
+                            bottomLeft: Radius.circular(10),
+                            bottomRight: Radius.circular(10),
+                          ),
+                          errorOutLineInputBorderColor:
+                              HexColor(ColorConst.errorColor),
                           prefixIcon: const Padding(
                             padding: EdgeInsets.only(right: 16.0, left: 16),
                             child: SvgImage(
@@ -175,7 +241,17 @@ class LoginPage extends StatelessWidget {
                               elevation: 2,
                               widget: const Text(TextConst.login),
                               textColor: HexColor(ColorConst.whiteColor),
-                              onPressed: () {},
+                              onPressed: () {
+                                if (authController.loginFormKey.currentState!
+                                    .validate()) {
+                                  authController.loginFormKey.currentState!
+                                      .save();
+                                  authController.validate.value = false;
+                                  authController.login();
+                                } else {
+                                  authController.validate.value = true;
+                                }
+                              },
                             ),
                           ),
                         ),

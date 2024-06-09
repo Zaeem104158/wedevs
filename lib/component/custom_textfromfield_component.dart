@@ -10,13 +10,17 @@ class CustomTextFromField extends StatelessWidget {
   final double? hintTextFontSize;
   final FontWeight? hintTextFontWeight;
   final double? hintTextLineHeight;
+  final BorderRadius inputBorderRadius;
+  final Color inputBorderColor;
   final BorderRadius focusedOutLineInputBorderRadius;
   final Color focusedOutLineInputBorderColor;
   final BorderRadius enableOutLineInputBorderRadius;
   final Color enableOutLineInputBorderColor;
+  final BorderRadius errorOutLineInputBorderRadius;
+  final Color errorOutLineInputBorderColor;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
-  final TextEditingController? controller;
+  final String? Function(String?)? onChanged;
   final String? Function(String?)? validator;
   const CustomTextFromField({
     super.key,
@@ -29,13 +33,17 @@ class CustomTextFromField extends StatelessWidget {
     this.hintTextLetterSpacing,
     this.hintTextFontWeight,
     this.hintTextLineHeight,
+    required this.inputBorderRadius,
+    required this.inputBorderColor,
     required this.focusedOutLineInputBorderRadius,
     required this.focusedOutLineInputBorderColor,
     required this.enableOutLineInputBorderRadius,
     required this.enableOutLineInputBorderColor,
+    required this.errorOutLineInputBorderRadius,
+    required this.errorOutLineInputBorderColor,
     this.prefixIcon,
     this.suffixIcon,
-    this.controller,
+    this.onChanged,
     this.validator,
   });
 
@@ -46,8 +54,8 @@ class CustomTextFromField extends StatelessWidget {
       child: Container(
         decoration: decoration,
         child: TextFormField(
-          controller: controller,
           validator: validator,
+          onChanged: onChanged,
           decoration: InputDecoration(
             filled: filled,
             fillColor: filledColor,
@@ -61,6 +69,18 @@ class CustomTextFromField extends StatelessWidget {
             ),
             hintTextDirection: TextDirection.ltr,
             alignLabelWithHint: true,
+            border: OutlineInputBorder(
+               borderRadius:inputBorderRadius,
+                borderSide: BorderSide(
+                color: inputBorderColor,
+              ), 
+               ),
+            errorBorder: OutlineInputBorder(
+              borderRadius: errorOutLineInputBorderRadius,
+              borderSide: BorderSide(
+                color: errorOutLineInputBorderColor,
+              ),
+            ),
             focusedBorder: OutlineInputBorder(
               borderRadius: focusedOutLineInputBorderRadius,
               borderSide: BorderSide(

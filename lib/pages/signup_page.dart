@@ -76,6 +76,13 @@ class SignupPage extends StatelessWidget {
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
                       hintTextFontWeight: FontWeight.w400,
+                      inputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      inputBorderColor: HexColor(ColorConst.whiteColor),
                       focusedOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -92,6 +99,14 @@ class SignupPage extends StatelessWidget {
                       ),
                       enableOutLineInputBorderColor:
                           HexColor(ColorConst.whiteColor),
+                      errorOutLineInputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      errorOutLineInputBorderColor:
+                          HexColor(ColorConst.errorColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(
@@ -117,6 +132,13 @@ class SignupPage extends StatelessWidget {
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
                       hintTextFontWeight: FontWeight.w400,
+                      inputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      inputBorderColor: HexColor(ColorConst.whiteColor),
                       focusedOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -133,6 +155,14 @@ class SignupPage extends StatelessWidget {
                       ),
                       enableOutLineInputBorderColor:
                           HexColor(ColorConst.whiteColor),
+                      errorOutLineInputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      errorOutLineInputBorderColor:
+                          HexColor(ColorConst.errorColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(
@@ -158,6 +188,13 @@ class SignupPage extends StatelessWidget {
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
                       hintTextFontWeight: FontWeight.w400,
+                      inputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      inputBorderColor: HexColor(ColorConst.whiteColor),
                       focusedOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -174,6 +211,14 @@ class SignupPage extends StatelessWidget {
                       ),
                       enableOutLineInputBorderColor:
                           HexColor(ColorConst.whiteColor),
+                      errorOutLineInputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      errorOutLineInputBorderColor:
+                          HexColor(ColorConst.errorColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(
@@ -214,6 +259,13 @@ class SignupPage extends StatelessWidget {
                       hintTextColor: HexColor(ColorConst.hintTextColor),
                       hintTextFontSize: 17.36,
                       hintTextFontWeight: FontWeight.w400,
+                      inputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      inputBorderColor: HexColor(ColorConst.whiteColor),
                       focusedOutLineInputBorderRadius: const BorderRadius.only(
                         topLeft: Radius.circular(10),
                         topRight: Radius.circular(10),
@@ -230,6 +282,14 @@ class SignupPage extends StatelessWidget {
                       ),
                       enableOutLineInputBorderColor:
                           HexColor(ColorConst.whiteColor),
+                      errorOutLineInputBorderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(10),
+                        topRight: Radius.circular(10),
+                        bottomLeft: Radius.circular(10),
+                        bottomRight: Radius.circular(10),
+                      ),
+                      errorOutLineInputBorderColor:
+                          HexColor(ColorConst.errorColor),
                       prefixIcon: const Padding(
                         padding: EdgeInsets.only(right: 16.0, left: 16),
                         child: SvgImage(

@@ -12,4 +12,5 @@ class ColorConst {
   static const String checkBoxColor = "#FF708A";
   static const String blackColor = "#000000";
   static const String greenColor = "#1ABC9C";
+  static const String errorColor = "#ff3333";
 }
