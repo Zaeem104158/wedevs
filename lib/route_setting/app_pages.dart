@@ -1,13 +1,22 @@
 import 'package:get/get.dart';
 import 'package:wedevs/controller/home_controller.dart';
 import 'package:wedevs/pages/home_page.dart';
+import 'package:wedevs/pages/splash_page.dart';
 import 'package:wedevs/route_setting/app_routes.dart';
 import 'package:wedevs/controller/auth_controller.dart';
+import 'package:wedevs/controller/splash_controller.dart';
 import 'package:wedevs/pages/login_page.dart';
 import 'package:wedevs/pages/signup_page.dart';
 
 class AppPages {
   static final routes = [
+     GetPage(
+      name: AppRoutes.splash,
+      page: () => const SplashPage(),
+      binding: BindingsBuilder(() {
+        Get.lazyPut<SplashController>(() => SplashController());
+      }),
+    ),
     GetPage(
       name: AppRoutes.login,
       page: () => const LoginPage(),

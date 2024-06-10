@@ -21,12 +21,10 @@ class SignupPage extends StatelessWidget {
     return SafeArea(
       child: Scaffold(
         body: SingleChildScrollView(
-          child: Column(
+            child: Obx(
+          () => Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              // SizedBox(
-              //   height: MediaQuery.of(context).padding.top,
-              // ),
               Align(
                 alignment: Alignment.center,
                 child: SizedBox(
@@ -59,16 +57,32 @@ class SignupPage extends StatelessWidget {
                 child: Column(
                   children: [
                     CustomTextFromField(
+                      onChanged: (value) {
+                        if (value != null || value!.isNotEmpty) {
+                          authController.name.value = value;
+                        }
+
+                        return authController.name.value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your name";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 5),
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            blurStyle: BlurStyle.normal,
-                            color: Colors.black.withOpacity(0.25),
-                          ),
-                        ],
+                        boxShadow: authController.validate.value
+                            ? [
+                                BoxShadow(
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 0,
+                                  blurStyle: BlurStyle.normal,
+                                  color: Colors.black.withOpacity(0.25),
+                                ),
+                              ]
+                            : [],
                       ),
                       filled: true,
                       filledColor: HexColor(ColorConst.whiteColor),
@@ -115,16 +129,32 @@ class SignupPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextFromField(
+                      onChanged: (value) {
+                        if (value != null || value!.isNotEmpty) {
+                          authController.email.value = value;
+                        }
+
+                        return authController.email.value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your email";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 5),
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            blurStyle: BlurStyle.normal,
-                            color: Colors.black.withOpacity(0.25),
-                          ),
-                        ],
+                        boxShadow: authController.validate.value
+                            ? [
+                                BoxShadow(
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 0,
+                                  blurStyle: BlurStyle.normal,
+                                  color: Colors.black.withOpacity(0.25),
+                                ),
+                              ]
+                            : [],
                       ),
                       filled: true,
                       filledColor: HexColor(ColorConst.whiteColor),
@@ -171,16 +201,32 @@ class SignupPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextFromField(
+                      onChanged: (value) {
+                        if (value != null || value!.isNotEmpty) {
+                          authController.password.value = value;
+                        }
+
+                        return authController.password.value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your password";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 5),
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            blurStyle: BlurStyle.normal,
-                            color: Colors.black.withOpacity(0.25),
-                          ),
-                        ],
+                        boxShadow: authController.validate.value
+                            ? [
+                                BoxShadow(
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 0,
+                                  blurStyle: BlurStyle.normal,
+                                  color: Colors.black.withOpacity(0.25),
+                                ),
+                              ]
+                            : [],
                       ),
                       filled: true,
                       filledColor: HexColor(ColorConst.whiteColor),
@@ -225,6 +271,7 @@ class SignupPage extends StatelessWidget {
                           assetName: ImagePath.passwordIcon,
                         ),
                       ),
+                      obscureText: authController.passwordVisibility.value,
                       suffixIcon: GestureDetector(
                         onTap: () {
                           authController.passwordVisibility.value =
@@ -233,7 +280,7 @@ class SignupPage extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.only(right: 16.0, left: 16),
                           child: Icon(
-                            authController.passwordVisibility.value
+                            !authController.passwordVisibility.value
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: HexColor(ColorConst.hintTextColor),
@@ -242,16 +289,34 @@ class SignupPage extends StatelessWidget {
                       ),
                     ),
                     CustomTextFromField(
+                      onChanged: (value) {
+                        if (value != null || value!.isNotEmpty) {
+                          authController.confirmPassword.value = value;
+                        }
+
+                        return authController.confirmPassword.value;
+                      },
+                      validator: (value) {
+                        if (value == null || value.isEmpty) {
+                          return "Please enter your password";
+                        } else if (authController.password.value != value) {
+                          return "Passwords aren't match";
+                        } else {
+                          return null;
+                        }
+                      },
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                            offset: const Offset(0, 5),
-                            blurRadius: 10,
-                            spreadRadius: 0,
-                            blurStyle: BlurStyle.normal,
-                            color: Colors.black.withOpacity(0.25),
-                          ),
-                        ],
+                        boxShadow: authController.validate.value
+                            ? [
+                                BoxShadow(
+                                  offset: const Offset(0, 5),
+                                  blurRadius: 10,
+                                  spreadRadius: 0,
+                                  blurStyle: BlurStyle.normal,
+                                  color: Colors.black.withOpacity(0.25),
+                                ),
+                              ]
+                            : [],
                       ),
                       filled: true,
                       filledColor: HexColor(ColorConst.whiteColor),
@@ -296,15 +361,17 @@ class SignupPage extends StatelessWidget {
                           assetName: ImagePath.passwordIcon,
                         ),
                       ),
+                      obscureText:
+                          authController.confirmPasswordVisibility.value,
                       suffixIcon: GestureDetector(
                         onTap: () {
-                          authController.passwordVisibility.value =
-                              !authController.passwordVisibility.value;
+                          authController.confirmPasswordVisibility.value =
+                              !authController.confirmPasswordVisibility.value;
                         },
                         child: Padding(
                           padding: const EdgeInsets.only(right: 16.0, left: 16),
                           child: Icon(
-                            authController.passwordVisibility.value
+                            !authController.confirmPasswordVisibility.value
                                 ? Icons.visibility
                                 : Icons.visibility_off,
                             color: HexColor(ColorConst.hintTextColor),
@@ -327,7 +394,13 @@ class SignupPage extends StatelessWidget {
                           widget: const Text(TextConst.signUp),
                           textColor: HexColor(ColorConst.whiteColor),
                           onPressed: () {
-                            Get.offAllNamed(AppRoutes.home);
+                            if (authController.signupFormKey.currentState!
+                                .validate()) {
+                              authController.signupFormKey.currentState!.save();
+                              authController.validate.value = true;
+                              authController.signup();
+                            }
+                            //Get.offAllNamed(AppRoutes.home);
                           },
                         ),
                       ),
@@ -414,7 +487,7 @@ class SignupPage extends StatelessWidget {
               )
             ],
           ),
-        ),
+        )),
       ),
     );
   }

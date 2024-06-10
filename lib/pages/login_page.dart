@@ -196,6 +196,7 @@ class LoginPage extends StatelessWidget {
                               assetName: ImagePath.passwordIcon,
                             ),
                           ),
+                          obscureText: authController.passwordVisibility.value,
                           suffixIcon: GestureDetector(
                             onTap: () {
                               authController.passwordVisibility.value =
@@ -205,7 +206,7 @@ class LoginPage extends StatelessWidget {
                               padding:
                                   const EdgeInsets.only(right: 16.0, left: 16),
                               child: Icon(
-                                authController.passwordVisibility.value
+                                !authController.passwordVisibility.value
                                     ? Icons.visibility
                                     : Icons.visibility_off,
                                 color: HexColor(ColorConst.hintTextColor),
@@ -261,41 +262,35 @@ class LoginPage extends StatelessWidget {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            GestureDetector(
-                              onTap: () {},
-                              child: CustomButton(
-                                height: 56,
-                                width: 56,
-                                backgroundColor:
-                                    HexColor(ColorConst.whiteColor),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 0.0, vertical: 0.0),
-                                borderRadius: 10,
-                                elevation: 2,
-                                widget: const SvgImage(
-                                    assetName: ImagePath.facebookIcon),
-                                textColor: HexColor(ColorConst.whiteColor),
-                                onPressed: () {},
-                              ),
+                            CustomButton(
+                              height: 56,
+                              width: 56,
+                              backgroundColor:
+                                  HexColor(ColorConst.whiteColor),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 0.0, vertical: 0.0),
+                              borderRadius: 10,
+                              elevation: 2,
+                              widget: const SvgImage(
+                                  assetName: ImagePath.facebookIcon),
+                              textColor: HexColor(ColorConst.whiteColor),
+                              onPressed: () {},
                             ),
                             const SizedBox(
                               width: 20,
                             ),
-                            GestureDetector(
-                              onTap: () {},
-                              child: CustomButton(
-                                height: 56,
-                                width: 56,
-                                backgroundColor:
-                                    HexColor(ColorConst.whiteColor),
-                                padding: const EdgeInsets.symmetric(
-                                    horizontal: 16.0, vertical: 16.0),
-                                borderRadius: 10,
-                                elevation: 2,
-                                widget: const SvgImage(
-                                    assetName: ImagePath.googleIcon),
-                                onPressed: () {},
-                              ),
+                            CustomButton(
+                              height: 56,
+                              width: 56,
+                              backgroundColor:
+                                  HexColor(ColorConst.whiteColor),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 16.0, vertical: 16.0),
+                              borderRadius: 10,
+                              elevation: 2,
+                              widget: const SvgImage(
+                                  assetName: ImagePath.googleIcon),
+                              onPressed: () {},
                             ),
                           ],
                         ),

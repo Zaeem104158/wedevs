@@ -18,4 +18,5 @@ class TextConst {
   static const String oldest = "Oldest";
   static const String cancel = "Cancel";
   static const String apply = "Apply";
+  static const String loginSuccessfull = "Login Successfull";
 }

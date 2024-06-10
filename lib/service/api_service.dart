@@ -1,24 +1,23 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
-import 'package:wedevs/const/const_methods.dart';
+
+import 'package:wedevs/service/env.dart';
 
 class ApiService {
   late String baseUrl;
   ApiService({Environment environment = Environment.test}) {
     switch (environment) {
       case Environment.production:
-        baseUrl = 'https://api.production.com';
+        baseUrl = productionUrl;
         break;
       case Environment.test:
-        baseUrl = 'https://apptest.dokandemo.com/wp-json';
+        baseUrl = testingUrl;
         break;
     }
   }
 
   Map<String, String> headerChecker(HeaderType headerType) {
-    // Map<String, String> headers = {};
-
     switch (headerType) {
       case HeaderType.json:
         return {'Content-Type': 'application/json'};
@@ -55,19 +54,16 @@ class ApiService {
     final url = Uri.parse('$baseUrl$endpoint');
     Map<String, String> headers = headerChecker(headerType);
     log("$url , $headers, $data");
-    try {
-      final response = await http.post(
-        url,
-        headers: headers,
-        body: data,
-      );
-      if (response.statusCode == 200) {
-        return jsonDecode(response.body);
-      } else {
-        throw Exception('Failed to post data');
-      }
-    } catch (e) {
-      throw Exception('Error: $e');
+   
+    final response = await http.post(
+      url,
+      headers: headers,
+      body: data,
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      return jsonDecode(response.body);
     }
   }
 }

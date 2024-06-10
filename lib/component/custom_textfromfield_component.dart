@@ -20,6 +20,7 @@ class CustomTextFromField extends StatelessWidget {
   final Color errorOutLineInputBorderColor;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
+  final bool obscureText;
   final String? Function(String?)? onChanged;
   final String? Function(String?)? validator;
   const CustomTextFromField({
@@ -43,6 +44,7 @@ class CustomTextFromField extends StatelessWidget {
     required this.errorOutLineInputBorderColor,
     this.prefixIcon,
     this.suffixIcon,
+    this.obscureText = true,
     this.onChanged,
     this.validator,
   });
@@ -56,6 +58,7 @@ class CustomTextFromField extends StatelessWidget {
         child: TextFormField(
           validator: validator,
           onChanged: onChanged,
+          obscureText: obscureText,
           decoration: InputDecoration(
             filled: filled,
             fillColor: filledColor,
