@@ -1,11 +1,38 @@
 import 'dart:convert';
 import 'dart:developer';
 import 'package:http/http.dart' as http;
+import 'package:wedevs/const/const_methods.dart';
 
 class ApiService {
-  String? baseUrl = "";
+  late String baseUrl;
+  ApiService({Environment environment = Environment.test}) {
+    switch (environment) {
+      case Environment.production:
+        baseUrl = 'https://api.production.com';
+        break;
+      case Environment.test:
+        baseUrl = 'https://apptest.dokandemo.com/wp-json';
+        break;
+    }
+  }
 
-  ApiService({this.baseUrl = "https://apptest.dokandemo.com/wp-json"});
+  Map<String, String> headerChecker(HeaderType headerType) {
+    // Map<String, String> headers = {};
+
+    switch (headerType) {
+      case HeaderType.json:
+        return {'Content-Type': 'application/json'};
+
+      case HeaderType.xwwwurlencoded:
+        return {'Content-Type': 'application/x-www-form-urlencoded'};
+
+      case HeaderType.formdata:
+        return {'Content-Type': 'application/json'};
+
+      default:
+        return {'Content-Type': 'application/json'};
+    }
+  }
 
   // GET request
   Future<dynamic> get(String endpoint) async {
@@ -24,20 +51,15 @@ class ApiService {
 
   // POST request
   Future<Map<String, dynamic>> post(
-      String endpoint, Map<String, dynamic> data) async {
-        
+      HeaderType headerType, String endpoint, Map<String, dynamic> data) async {
     final url = Uri.parse('$baseUrl$endpoint');
-    // /wp/v2/users/register
-    log("$url");
+    Map<String, String> headers = headerChecker(headerType);
+    log("$url , $headers, $data");
     try {
       final response = await http.post(
         url,
-        headers: {
-        //'Content-Type': 'application/json',
-          'Content-Type': 'application/x-www-form-urlencoded',
-        },
-        encoding: Encoding.getByName('utf-8'),
-        body: data/*jsonEncode(data)*/,
+        headers: headers,
+        body: data,
       );
       if (response.statusCode == 200) {
         return jsonDecode(response.body);

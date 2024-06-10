@@ -2,6 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:wedevs/const/const_methods.dart';
 import 'package:wedevs/service/api_service.dart';
 
 class AuthController extends GetxController {
@@ -19,9 +20,9 @@ class AuthController extends GetxController {
       "password": password.value,
     };
     log("message: $request");
-    var data = await _apiService.post("/wp/v2/users/register", request);
+    var data = await _apiService.post(HeaderType.xwwwurlencoded,"/jwt-auth/v1/token", request);
     if (data['token'] != null) {
-      log("messafe: ${data['token']}");
+      log("message: ${data['token']}");
     }
   }
 }
