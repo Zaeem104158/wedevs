@@ -26,7 +26,11 @@ class AuthController extends GetxController {
   final validate = false.obs;
 
   signup() async {
-    var request = {"username": name, "email": email, "password": password};
+    var request = {
+      "username": name.value,
+      "email": email.value,
+      "password": password.value
+    };
     log("message: $request");
     var data = await _apiService.post(
         HeaderType.json, "/wp/v2/users/register", request);
@@ -41,6 +45,7 @@ class AuthController extends GetxController {
           backgroundColor: HexColor(ColorConst.errorColor),
           colorText: HexColor(ColorConst.whiteColor));
     }
+    return null;
   }
 
   login() async {

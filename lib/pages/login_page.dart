@@ -75,6 +75,7 @@ class LoginPage extends StatelessWidget {
                                   ]
                                 : [],
                           ),
+                          obscureText: false,
                           filled: true,
                           filledColor: HexColor(ColorConst.whiteColor),
                           hintText: TextConst.email,

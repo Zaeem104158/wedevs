@@ -71,6 +71,7 @@ class SignupPage extends StatelessWidget {
                           return null;
                         }
                       },
+                      obscureText: false,
                       decoration: BoxDecoration(
                         boxShadow: authController.validate.value
                             ? [
@@ -143,6 +144,7 @@ class SignupPage extends StatelessWidget {
                           return null;
                         }
                       },
+                       obscureText: false,
                       decoration: BoxDecoration(
                         boxShadow: authController.validate.value
                             ? [

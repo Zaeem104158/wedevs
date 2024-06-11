@@ -53,13 +53,15 @@ class ApiService {
       HeaderType headerType, String endpoint, Map<String, dynamic> data) async {
     final url = Uri.parse('$baseUrl$endpoint');
     Map<String, String> headers = headerChecker(headerType);
+
     log("$url , $headers, $data");
-   
+
     final response = await http.post(
       url,
       headers: headers,
-      body: data,
+      body: headerType == HeaderType.json ? jsonEncode(data) : data,
     );
+ 
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
